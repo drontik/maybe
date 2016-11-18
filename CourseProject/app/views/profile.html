@@ -1,0 +1,175 @@
+<div class="row" id="main">
+    <div class="page-header text-center">
+        <br>
+        <h1>{{translation.EDIT_PROFILE}}, {{userInfo.userName}}</h1>
+    </div>
+    <div data-ng-if="showLoading" class="loading text-center">
+        <br><br>
+        <i class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
+    </div>
+    <div class="col-md-12" data-ng-if="message != ''">
+        <div class="col-md-4">&nbsp;</div>
+        <div class="col-md-8">
+            <div data-ng-class="(savedSuccessfully) ? 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success' : 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger'" role="alert">
+                <i class="fa fa-exclamation"></i>
+                <span class="sr-only">Result:</span>
+                {{message}}
+            </div><br>
+        </div><br>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4 ">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div>
+                    <div class="col-md-3"></div>
+                    <button type="button" class="col-md-6 text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-info trigger">
+                        {{translation.UPLOAD}}
+                    </button>
+                    <img data-ng-if="userInfo.avatarUri" style="width: 200px; height: 200px;" align="center" data-ng-src="{{userInfo.avatarUri}}" alt="Texto Alternativo" class="img-thumbnail">
+                    <img data-ng-if="userInfo.avatarUri == undefined" style="width: 200px; height: 200px;" align="center" src="http://res.cloudinary.com/ddttiy9ko/image/upload/v1458831441/avatar_sdaz7g.jpg" alt="Texto Alternativo" class="img-thumbnail">
+                    <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
+                    <p>{{userInfo.userName}}</p>
+
+
+                    <a ng-if="isAdmin" href="#/admin" type="button" class="btn btn-warning">
+                        {{translation.ADMIN_DASH}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="border-left: 2px; border-color: rgb(100, 100, 100); padding-right: 50px" id="rightPanel">
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" maxlength="25" data-ng-model="userInfo.firstName" name="first_name" id="first_name" class="form-control input-lg" placeholder="{{translation.F_NAME}}" tabindex="1">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" maxlength="25" data-ng-model="userInfo.lastName" name="last_name" id="last_name" class="form-control input-lg" placeholder="{{translation.L_NAME}}" tabindex="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" maxlength="25" data-ng-model="userInfo.email" name="email" id="email" class="form-control input-lg" placeholder="{{translation.EMAIL}}" tabindex="4" required>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="tel" maxlength="15" data-ng-model="userInfo.phoneNumber" name="phoneNumber" id="phoneNumber" class="form-control input-lg" placeholder="{{translation.PHONE}}" tabindex="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3"></div>
+                        <div class="col-xs-12 col-md-6">
+                            <a data-ng-click="saveUserInfo()" class="btn-green-flat">{{translation.SAVE}}</a>
+                        </div>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <input type="password" data-ng-model="newUserInfo.oldPassword" name="{{translation.OLD_PASS}}" id="password" class="form-control input-lg" placeholder="{{translation.OLD_PASS}}" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <input type="password" data-ng-model="newUserInfo.newPassword" name="" id="new_password" class="form-control input-lg" placeholder="{{translation.NEW_PASS}}" tabindex="6">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <input type="password" data-ng-model="newUserInfo.passConfirm" name="" id="password_confirmation" class="form-control input-lg" placeholder="{{translation.PASS_CONFIRM}}" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a data-ng-click="changePassword()" class="btn-green-flat"> {{translation.CHANGE_PASSWORD}} </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <div data-ng-if="userInfo.medals.length > 0" class="event-list">
+            <div class=" text-center">
+                <br>
+                <div class="col-md-12 page-header">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 ">
+                        <div class="text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning">
+                            <i class="fa fa-star"></i>&nbsp;{{translation.ACHIEV}}&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span data-ng-repeat="medal in userInfo.medals">
+                <span class="col-md-3 text-center">
+                    <img width="100" height="100" alt="placeholder" data-ng-src="{{medal.imageUri}}" />
+                    <div class="info">
+                        <h2 class="title">{{medal.name}}</h2>
+                        <p class="desc">{{medal.description}}</p>
+                    </div>
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 page-header">&nbsp;</div>
+    <div class="col-md-12">&nbsp;</div>
+    <div class="global-modal">
+        <div class="overlay"></div>
+        <div class="global-modal-profile_contents modal-transition">
+            <div class="global-modal-header">
+                <span class="mobile-close"> X </span>
+                <h3>
+                    <b>
+                        <i class="fa fa-2x fa-upload"></i>
+                        <div style="width: 40%; position: relative;" class="btn-green-flat" accept="image/*" ngf-pattern="'image/*'" ngf-select ng-model="$parent.file" ngf-multiple="false">
+                            {{translation.CHOSE}}
+                        </div>
+                    </b>
+                </h3>
+            </div>
+            <div class="global-modal-body">
+                <div id="upload" class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <strong>{{translation.UPLOAD}} </strong> <small> </small>
+                            </div>
+                            <div class="panel-body">
+                                <div data-ng-if="!file.name" ngf-drop ngf-select ng-model="$parent.file" class="drop-box upload-drop-zone" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'">
+                                    {{translation.DRAG_MSG}}
+                                </div>
+                                <img class="img img-responsive" ngf-src="file" class="thumb">
+                                <div class="js-upload-finished text-center" data-ng-if="file.name">
+                                    <h3>{{translation.FILE}}: {{file.name}} {{file.$error}} {{file.$errorParam}} </h3>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : progressPercentage*10}">
+                                            <span class="sr-only">60% Complete</span>
+                                        </div>
+                                    </div>
+                                    <div data-ng-if="showLoading" class="loading">
+                                        <h3>Wait a second...</h3><br>
+                                        <i class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
+                                    </div>
+                                    <br>
+                                    <a data-ng-click="updateAvatar()" class="btn-green-flat"> {{translation.UPLOAD}} </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

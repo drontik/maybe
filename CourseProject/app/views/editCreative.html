@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="col-md-12" style="padding-top: 20px">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <a href="" data-toggle="modal" data-target="#myModal">
+                        <i style="cursor: pointer;"class="fa fa-4x fa-trash-o pull-right"></i>
+                    </a>
+                    <a data-ng-click="saveCreative()">
+                        <i style="cursor: pointer;" class="fa fa-4x fa-floppy-o pull-right"></i>
+                    </a>
+                    <h2 align="center">{{translation.EDIT_CREATIVE}}</h2><hr >
+                </div>
+                <div data-ng-if="showLoading" class="loading text-center">
+                    <br><br>
+                    <i class="fa fa-spinner fa-pulse fa-spin" style="font-size: 24px"></i>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-6 text-center">
+                        <a class="text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning" data-ng-href="#/show/{{creative.id}}">{{translation.BACK_TO_CREATIVE}}</a>
+                        <a class="text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning" data-ng-href="#/home">{{translation.BACK_TO_HOME}}</a>
+                        <br><br>
+
+                        <div data-ng-if="message != ''" data-ng-class="(savedSuccessfully) ? 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success' : 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger'" role="alert">
+                            <i class="fa fa-exclamation"></i>
+
+                            <span class="sr-only">Result:</span>
+                            {{message}}
+                        </div><br>
+
+                    </div><br>
+                </div><br><br>
+            </div>
+            <div class="row">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="text" data-ng-model="creative.name" name="last_name" id="last_name" class="form-control input-lg" placeholder="{{translation.CREATIVE_NAME}}" tabindex="2">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <textarea type="text" data-ng-model="creative.description" class="form-control input-lg" placeholder="{{translation.DESCRIPTION}}" tabindex="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-8">
+                    <tags-input
+                        ng-model="creative.tags"
+                        selectFirstMatch="true"
+                        display-property="name"
+                        placeholder="{{translation.ADD_TAGS}}"
+                        debounce-delay="0"
+                        add-on-space="true"
+                        add-on-blur="true"
+                        max-length="10"
+                        replace-spaces-with-dashes="false"
+                        add-from-autocomplete-only="false"
+                        add-on-paste="true">
+                        <auto-complete
+                            selectFirstMatch="true"
+                            load-on-focus="true"
+                            load-on-empty="true"
+                            max-results-to-show="5"
+                            source="loadTags($query)">
+                        </auto-complete>
+                    </tags-input>
+                </div>
+                <br>
+            </div>
+            <hr >
+            <div class="row">
+                <p align="center">
+                    <a data-ng-href="#/chapters/{{creativeId}}/0" class="">
+                        <i class="fa fa-4x fa-plus-square-o"> </i>
+                    </a>
+                </p>
+                <div class="col-md-12">
+                    <div ui-sortable="sortableOptions" data-ng-model="chapters">
+                        <div data-ng-repeat="item in chapters" class="col-md-2 text-center">
+                            <div class="box  ">
+                                <div class="box-content">
+                                    <h4 style="word-wrap: break-word;" class="tag-title">
+                                        #{{$index+1}}<br>{{item.name.slice(0,20)}}
+                                    </h4>
+                                    <hr/>
+                                    <a data-ng-href="#/chapters/{{creativeId}}/{{item.id}}">
+                                        <i class="fa fa-4x fa-pencil-square-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" s>
+    <div class="modal-dialog">
+        <div class="global-modal-confirm_contents modal-transition">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{translation.SURE}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{translation.DELETE}} &nbsp; "{{creative.name}} ?"</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{translation.CANCEL}}</button>
+                <button type="button" class="btn btn-primary" data-ng-click="deleteCreative()">{{translation.DELETE}}</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

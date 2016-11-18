@@ -1,0 +1,222 @@
+﻿<div data-ng-hide="authentication.isAuth" class="jumbotron">
+
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>{{translation.MAIN_TEXT}}</h1>
+        </div>
+        <div class="col-md-12">
+            <br><br>
+        </div>
+        <h2 align="center">{{translation.SECONDARY_TEXT}}</h2>
+        <br>
+        <div class="text-center">
+            <div class="col-md-3"></div>
+            <a data-ng-href="#/main" style="font-size: 24px" class="col-md-6 _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-info">{{translation.EXPLORE_CREATIVE_HUB}}</a>
+        </div>
+        <div class="col-md-12">
+            <br><br>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <div class="col-md-6 text-center">
+                <h2>{{translation.LOGIN}}</h2>
+                <p class="text-primary">
+                    {{translation.LOGIN_TEXT}}
+                </p>
+                <p>
+                    <a class="btn btn-info" href="#/login" role="button">{{translation.LOGIN}} &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-6 text-center">
+                <h2>{{translation.SIGNUP}}</h2>
+                <p class="text-primary">
+                    {{translation.SIGNUP_TEXT}}
+                </p>
+                <p>
+                    <a class="btn btn-info" href="#/signup" role="button">{{translation.SIGNUP}} &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-2">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div> 
+<div data-ng-hide="!authentication.isAuth" class="container">
+    <div class="page-header text-center">
+        <div class="row">
+            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-6 text-center">
+                <p align="center">
+                    <img data-ng-if="userInfo.avatarUri == undefined" style="width: 200px; height: 200px;" align="center" src="http://res.cloudinary.com/ddttiy9ko/image/upload/v1458831441/avatar_sdaz7g.jpg" alt="Texto Alternativo" class="img-thumbnail">
+                    <img data-ng-if="userInfo.avatarUri != undefined" class="media-object dp img-circle" data-ng-src="{{userInfo.avatarUri}}" style="width: 150px; height: 150px;">
+                </p>
+                <h3>{{userInfo.firstName}} <{{userInfo.userName}}> {{userInfo.lastName}}</h3>
+                <hr style="margin: 8px auto">
+                <h5>{{userInfo.email}}</h5>
+            </div>
+        </div>
+
+        <div class="global-modal" >
+            <div class="overlay"></div>
+            <div class="global-modal_contents modal-transition" > 
+                <div class="global-modal-header">                          
+                  <h3> <i class="fa fa-2x fa-edit"></i>{{translation.NEW_CREATIVE}}</h3>
+                   
+                </div>
+                <div data-ng-if="showLoading" class="loading text-center">
+                    <br><br>
+                    <i class="fa fa-spinner fa-pulse fa-spin" style="font-size: 24px"></i>
+                </div>
+                <div class="col-md-12" data-ng-if="message != ''">
+                    <br>
+                    <div data-ng-class="(savedSuccessfully) ? 'text-center  _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success' : 'text-center  _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger'" role="alert">
+                        <i class="fa fa-exclamation"></i>
+                        <span class="sr-only">Result:</span>
+                        {{message}}
+                    </div>
+                    <br>
+                </div>
+                <div class="global-modal-body">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <h2 class="form-login-heading">{{translation.TITLE}}</h2>
+                                <hr>
+                                <input maxlength="80" style="text-align: center" type="text" class="form-control" data-ng-model="creativeName" placeholder="{{translation.CREATIVE_NAME}}" required autofocus>
+                            </div>
+                            <div class="col-md-12">
+                                <h2 class="form-login-heading">{{translation.DESCRIPTION}}</h2> 
+                                <hr>
+                                <textarea style="text-align: center" type="text" class="form-control" maxlength="150" data-ng-model="creativeDescription" placeholder="{{translation.DESCRIPTION}}" rows="3" required autofocus>{{creativeDescription}} </textarea>                        
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="col-md-12">
+                               <h2 class="form-login-heading">{{translation.TAGS}}</h2>
+                               <hr>
+                                <tags-input ng-model="tags" selectFirstMatch="true" display-property="name" add-on-enter="true"  placeholder="{{translation.ADD_TAGS}}" debounce-delay="0" add-on-space="true" add-on-blur="true" max-length="10"
+                                    replace-spaces-with-dashes="true" add-from-autocomplete-only="false" add-on-paste="true">
+                                    <auto-complete selectFirstMatch="true" load-on-focus="true" load-on-empty="true" max-results-to-show="5" min-length="1"
+                                        source="loadTags($query)">
+                                    </auto-complete>
+                                </tags-input>
+                        </div>
+                      
+                        <div class="col-md-12">
+                             <h2 class="form-login-heading">{{translation.CATEGORY}}</h2>
+                             <hr>
+                        <select class="form-control" ng-init="currentCategory = categories[0]" data-ng-model="currentCategory" data-ng-options="act.name for act in categories">
+                        </select>
+                        </div>
+                          </div>
+                    </div>                   
+                        <div class="col-md-12">
+                        <hr>
+                        <div class="block center" style="margin-bottom: 20px;">
+                            <a class="btn-green-flat" data-ng-click="createCreative()">{{translation.SAVE}}</a>
+                        </div>
+                        </div><br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="block center">
+            <a class="btn-green-flat-trigger">{{translation.NEW_CREATIVE}}</a>
+            <br><br> <br>
+        </div>
+  
+    <div data-ng-hide="creatives.length < 1">
+        <div class="col-md-12">
+            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon ">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{translation.SEARCH}}" ng-model="searchCreatives">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="margin-bottom: 10px; padding-bottom: 15px" class="col-md-12">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success btn-filter" data-ng-click="sortType = 'created'; sortReverse = !sortReverse">
+                        {{translation.DATE}}
+                        <span ng-show="sortType == 'created' && sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'created' && !sortReverse" class="fa fa-caret-up"></span></button>
+                    <button type="button" class="_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success btn-filter" data-ng-click="sortType = 'avgRating';sortReverse = !sortReverse">
+                        {{translation.RATING}}
+                        <span ng-show="sortType == 'avgRating' && sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'avgRating' && !sortReverse" class="fa fa-caret-up"></span>
+                    </button>
+                    <button type="button" class="_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success btn-filter" data-ng-click="sortType = 'popular';sortReverse = !sortReverse">
+                        {{translation.POPULAR}}
+                        <span ng-show="sortType == 'popular' && sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'popular' && !sortReverse" class="fa fa-caret-up"></span>
+                    </button>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="opacity: 0">
+    <div class="col-md-12 margin-bottom-30 text-center" data-ng-repeat="creative in creatives | filter:searchCreatives | orderBy:sortType:sortReverse ">
+        <div class="portlet portlet-bordered">
+            <div class="portlet-title">
+                <div class="caption caption-red">
+                    <i class="fa fa-book"></i>
+                    <span data-ng-click="showCreative(creative.id)" style="cursor: pointer;" class="caption-subject text-uppercase"> &nbsp;{{creative.name.slice(0,40)}}  &nbsp;</span>                   
+                    <span style="font-size: 24px"><i class="fa fa-comments" ></i>
+                        &nbsp;{{creative.comments.length}}&nbsp;
+                    </span>
+                    <span style="font-size: 24px" data-ng-if="creative.avgRating > 4">
+                       <i class="fa fa-star" ></i>
+                        &nbsp;{{creative.avgRating.toFixed(2)}}&nbsp; 
+                    </span> 
+                    <span style="font-size: 24px" data-ng-if="creative.avgRating >= 2 && creative.avgRating <= 4 ">
+                        <i class="fa fa-star-half-o" ></i>
+                        &nbsp;{{creative.avgRating.toFixed(2)}}&nbsp;
+                    </span>     
+                    <span style="font-size: 24px" data-ng-if="creative.avgRating < 2">
+                        <i class="fa fa-star-o" ></i>
+                         &nbsp;{{creative.avgRating.toFixed(2)}}&nbsp; 
+                    </span>    
+                    <span class="caption-helper">
+                         &nbsp;{{creative.created}}&nbsp;
+                    </span>
+                </div>
+                <div class="actions">
+                    <a data-ng-href="#/edit/{{creative.id}}" class="_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-info">
+                        <i class="glyphicon glyphicon-pencil"></i>&nbsp;{{translation.EDIT}}&nbsp;
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="word-wrap: break-word;">
+                <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-11">
+                        <h3>{{creative.description}}</h3>
+                    </div>
+                </div>
+                <h3 data-ng-repeat="chapter in creative.chapters">{{$index + 1}}. {{chapter.name}}</h3>
+                <div class="widget--tags text-center">
+                    <a href="" data-ng-repeat="tag in creative.tags | orderBy: 'count' : true" class="tag" data-count="{{tag.count}}"
+                       data-ng-click='search(tag.name)'>{{tag.name}}</a>
+                </div>
+                <br>
+                <a  data-ng-href="#/show/{{creative.id}}" class="text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                    &nbsp;{{translation.SHOW}}&nbsp;
+                </a> <br><br>
+               
+            </div>
+        </div>
+    </div>
+</div>

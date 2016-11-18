@@ -1,0 +1,9 @@
+<publishData>
+  <publishProfile
+    publishUrl="https://sweexxik-001-site1.anytempurl.com:8172/msdeploy.axd"
+    msdeploySite="sweexxik-001-site1"
+    destinationAppUrl="http://sweexxik-001-site1.anytempurl.com/"
+    profileName="Default Settings"
+    publishMethod="MSDeploy"
+    userName="ifc\sweexxik-001" />
+</publishData>

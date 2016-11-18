@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="AngularAuthApp" data-ng-controller="indexController">
+<head>
+    <meta name="keywords" content="angularjs,SPA,Single Page Application,refresh tokens,authentication,bearer token authentication,OWIN,bootstrap,bootstrap ui,tutorial,JS framework,ASP.NET WEB API 2,Taiseer Joudeh"/>
+    <meta name="description" content="SPA built using angularjs,authentication is done using bearer token,back end built using Asp.net web api 2 and OWIN Framework,creatd by Taiseer Joudeh"/>
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
+
+    <title>Cource Project iTransition</title>
+    <link ng-href="content/css/site-{{currentTheme}}.css" rel="stylesheet"/>
+    <link ng-href="https://bootswatch.com/{{currentTheme}}/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="content/main_css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="content/css/box-edit-creative.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="content/css/loading-app.css">
+    <link href="content/css/markdown.css" rel="stylesheet"/>
+    <link href="content/css/tags-view.css" rel="stylesheet"/>
+    <link href="content/css/modal.css" rel="stylesheet"/>
+    <link href="content/css/home_posts.css" rel="stylesheet"/>
+    <link href="content/css/medal-view.css" rel="stylesheet"/>
+    <link href="content/css/comment_box_new.css" rel="stylesheet"/>
+    <link href="content/css/upload-form.css" rel="stylesheet"/>
+    <link href="content/css/ng-sortable.css" rel="stylesheet"/>
+    <link href="content/css/ul-chapters-drag.css" rel="stylesheet"/>
+    <link href="content/css/searchPage.css" rel="stylesheet"/>
+    <link href="content/css/admin-panel.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.0.0/ng-tags-input.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.0.0/ng-tags-input.bootstrap.min.css" rel="stylesheet"/>
+    <link href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' rel='stylesheet'/>
+
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- <script src="scripts/jquery-min.js"></script> -->
+    <!-- <script src="scripts/bootstrap-min.js"></script> -->
+
+    <!-- <link href="content/css/loading-bar.css" rel="stylesheet"/> -->
+    <!-- <link href="content/css/comment_box.css" rel="stylesheet"/> -->
+    <!-- <link href="content/css/social-buttons.css" rel="stylesheet"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="content/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+</head>
+<body>
+<div class="m-app-loading" ng-animate-children>
+    <div class="animated-container">
+        <div class="messaging">
+            <h1>App is Loading</h1>
+            <p>Please wait a while...</p>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/main">{{translation.CREATIVE_HUB}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a data-ng-hide="!authentication.isAuth" href="#/home">{{translation.MY_CREATIVES}}</a>
+                </li>
+                <li>
+                    <a data-ng-hide="!authentication.isAuth" href="#/profile">{{translation.PROFILE}}</a>
+                </li>
+                <li>
+                    <a href="" data-ng-click="changeTheme()">{{translation.CHANGE_THEME}}</a>
+                </li>
+                <li data-ng-hide="!authentication.isAuth">
+                    <a href="" data-ng-click="logOut()">{{translation.LOGOUT}}</a>
+                </li>
+                <li data-ng-hide="authentication.isAuth">
+                    <a href="#/login">{{translation.LOGIN}}</a>
+                </li>
+                <li data-ng-hide="authentication.isAuth">
+                    <a href="#/signup">{{translation.SIGNUP}}</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img data-ng-if="selectedLanguage == 'ru'" width="30px" height="20px" src="content/images/rus.png">
+                        <img data-ng-if="selectedLanguage == 'en'" width="30px" height="20px" src="content/images/usa.png"><span class="caret"></span></a>
+                    <ul class="dropdown-menu ">
+                        <li class="text-center">
+                            <a href="" data-ng-click="setRU()"><img width="30px" height="20px" src="content/images/rus.png">RU</a>
+                        </li>
+                        <li class="text-center">
+                            <a href="" data-ng-click="setEN()"> <img width="30px" height="20px" src="content/images/usa.png">EN</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form data-ng-submit="search()" class="navbar-form navbar-right">
+                <input type="text" data-ng-model="pattern" class="form-control" placeholder="{{translation.SEARCH}}">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div data-ng-view=""></div>
+<hr/>
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <p class="text-muted">
+                    Created by
+                    <a target="_blank" href="https://www.facebook.com/drotik.timofeev">Nikita Timofeev</a>
+                </p>
+            </div>
+            <div class="col-md-6 text-center">
+                <p class="text-muted">Email: <a target="_blank">drotik-timofeev@mail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.angularjs.org/1.5.2/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.5.2/angular-route.min.js"></script>
+<script src="https://code.angularjs.org/1.5.2/angular-animate.min.js"></script>
+<script src="https://code.angularjs.org/1.5.2/angular-aria.min.js"></script>
+<script src="https://code.angularjs.org/1.5.2/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+<script src="https://code.angularjs.org/1.5.2/angular-resource.min.js"></script>
+<script src="https://code.angularjs.org/1.5.2/angular-sanitize.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.0.0/ng-tags-input.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.5/ui-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngInfiniteScroll/1.2.2/ng-infinite-scroll.min.js"></script>
+<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.14.0/sortable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.7/angular-local-storage.min.js"></script>
+
+<script src="scripts/showdownX.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-showdown/1.1.0/ng-showdown.min.js"></script>
+<script src="scripts/markdown-editable.js"></script>
+<script src="scripts/ng-file-upload.js"></script>
+<script src="scripts/ng-sortable.js"></script>
+<script src="scripts/ng-file-upload-shim.min.js"></script>
+<script src="scripts/angular-drag-and-drop-lists.min.js"></script>
+
+<!-- Load app main script -->
+<script src="app/app.js?v=2"></script>
+<!-- Load services -->
+<script src="app/services/authInterceptorService.js?v=2"></script>
+<script src="app/services/authService.js?v=2"></script>
+<script src="app/services/searchService.js?v=2"></script>
+<script src="app/services/creativeService.js?v=2"></script>
+<script src="app/services/adminService.js?v=2"></script>
+<script src="app/services/translationService.js?v=2"></script>
+<!-- Load controllers -->
+<script src="app/controllers/adminController.js?v=2"></script>
+<script src="app/controllers/searchController.js?v=2"></script>
+<script src="app/controllers/indexController.js?v=2"></script>
+<script src="app/controllers/homeController.js?v=2"></script>
+<script src="app/controllers/loginController.js?v=2"></script>
+<script src="app/controllers/signupController.js?v=2"></script>
+<script src="app/controllers/chaptersController.js?v=2"></script>
+<script src="app/controllers/mainController.js?v=2"></script>
+<script src="app/controllers/showCreativeController.js?v=2"></script>
+<script src="app/controllers/editCreativeController.js?v=2"></script>
+<script src="app/controllers/profileController.js?v=2"></script>
+<script src="app/controllers/admin/adminCreativesController.js"></script>
+<script src="app/controllers/admin/adminChaptersController.js"></script>
+<script src="app/controllers/admin/adminTagsController.js"></script>
+<script src="app/controllers/admin/adminCommentsController.js"></script>
+<script src="app/controllers/admin/adminRatingsController.js"></script>
+<script src="app/controllers/admin/adminCategoriesController.js"></script>
+<script src="app/controllers/userPageController.js"></script>
+<script src="https://s3-ap-southeast-1.amazonaws.com/naveensingh/posts_data/ckeditor_example/ng-ckeditor.min.js"></script>
+<script src="content/ckeditor/ckeditor.js"></script>
+
+<!-- 3rd party libraries -->
+<!-- <script src="scripts/angular-min.js"></script>
+<script src="scripts/angular-route.min.js"></script>
+<script src="scripts/angular-animate.min.js"></script>
+<script src="scripts/angular-aria.min.js"></script>
+<script src="scripts/angular-messages.min.js"></script>
+<script src="scripts/angular-material.min.js"></script>
+<script src="scripts/ui-bootstrap.min.js"></script>
+<script src="scripts/angular-resource.js"></script>
+<script src="scripts/showdown.min.js"></script>
+<script src="scripts/ng-showdown.js"></script>
+<script src="scripts/angular-sanitize.js"></script>
+<script src="scripts/ng-infinity-scroll.js"></script>
+<script src="scripts/jquery-ui.js"></script>
+<script src="scripts/angular-local-storage.min.js"></script>
+<script src="scripts/loading-bar.min.js"></script>
+<script src="scripts/sortable.js"></script>
+<script src="scripts/ng-tags-input.min.js"></script>
+<script src="scripts/ng-ckEditor.js"></script>
+<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
+<script src="content/ckeditor/ckeditor.js"></script> -->
+
+</body>
+</html>

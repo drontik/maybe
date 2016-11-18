@@ -1,0 +1,1 @@
+update-database -ProjectName CourseProject.Api -StartUpProjectName CourseProject.Api -Verbose -ConnectionString "Data Source=.\;Initial Catalog=store;Integrated Security=True;MultipleActiveResultSets=true;" -ConnectionProviderName System.Data.SqlClient

@@ -1,0 +1,27 @@
+﻿<div data-ng-hide="authentication.isAuth" class="jumbotron">
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>{{translation.SIGNUP_MAIN_TEXT}}</h1>
+        </div>
+        <p align="center">{{translation.SECONDARY_TEXT}}</p>
+        <form role="form">
+            <div class="row">
+                <div class="col-md-4">
+                    &nbsp;
+                </div>
+                <div class="col-md-4 text-center">
+                    <h2 class="form-login-heading">{{translation.LOGIN}}</h2> <br>
+                    <input type="text" class="form-control" placeholder="{{translation.USERNAME}}" data-ng-model="loginData.userName" required autofocus>
+                    <br>
+                    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="loginData.password" required>
+                    <br>
+                    <button class="btn btn-md btn-info btn-block" type="submit" data-ng-click="login()">{{translation.LOGIN}}</button>
+                     <div class="col-md-12"><br></div>
+                    <div data-ng-hide="message == ''" class="text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger">
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

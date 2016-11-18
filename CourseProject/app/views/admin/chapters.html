@@ -1,0 +1,139 @@
+<div class="container-fluid">
+      <div class="row">
+            <div class="col-md-2" style="padding-top: 20px">
+          <ul class="nav nav-sidebar">
+            <li ><a data-ng-href="#/admin/">Users</a></li>          
+            <li><a data-ng-href="#/admin/creatives">Creatives</a></li>
+      		<li class="active"><a data-ng-href="#/admin/chapters">Chapters</a></li>
+            <li><a data-ng-href="#/admin/tags">Tags</a></li>          
+            <li><a data-ng-href="#/admin/ratings">Ratings</a></li>
+            <li><a data-ng-href="#/admin/comments">Comments</a></li>
+                <li><a data-ng-href="#/admin/categories">Categories</a></li>
+          </ul>        
+      
+        </div>
+      <div class="col-md-10 main">
+                  	<h1 class="page-header text-center">Admin Dashboard</h1>
+	<h2 class="sub-header text-center">Chapters manager</h2>          		 
+          			<div class="col-md-3"></div>
+					<div class="col-md-6">
+					<form>
+				    <div class="form-group">	
+				      <div class="input-group">
+				        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+				        <input type="text" class="form-control" placeholder="Search chapters" ng-model="searchUsers">
+				      </div>      
+				    </div>
+				</form>
+				</div>
+				<div class="col-md-12">
+          		<div class="table-responsive">
+            		<table class="table table-striped table-hover">
+              		<thead> 
+				        <th>#</th>
+				               <th>
+				        	<a ng-click="sortType = 'id'; sortReverse = !sortReverse">
+					            Id
+					            <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
+					            <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
+				            </a>
+				        </th>
+				        <th>
+				        	<a ng-click="sortType = 'name'; sortReverse = !sortReverse">
+					            Name
+					            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+					            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+				            </a>
+				        </th>
+				              <th>
+				        	<a ng-click="sortType = 'creativeId'; sortReverse = !sortReverse">
+					            CreativeId
+					            <span ng-show="sortType == 'creativeId' && !sortReverse" class="fa fa-caret-down"></span>
+					            <span ng-show="sortType == 'creativeId' && sortReverse" class="fa fa-caret-up"></span>
+				            </a>
+				        </th>
+				        <th>
+				        	<a ng-click="sortType = 'body'; sortReverse = !sortReverse">
+					            Body
+					            <span ng-show="sortType == 'body' && !sortReverse" class="fa fa-caret-down"></span>
+					            <span ng-show="sortType == 'body' && sortReverse" class="fa fa-caret-up"></span>
+				            </a>
+				        </th>
+				  
+				        <th>
+				        	<a ng-click="sortType = 'created'; sortReverse = !sortReverse">
+					            Created
+					            <span ng-show="sortType == 'created' && !sortReverse" class="fa fa-caret-down"></span>
+					            <span ng-show="sortType == 'created' && sortReverse" class="fa fa-caret-up"></span>
+				            </a>
+				        </th>
+				        <th>Number</th>
+				   
+				       
+					</thead>
+  					<tbody>	
+	    				<tr  data-ng-repeat="chapter in chapters | orderBy:sortType:sortReverse  | filter:searchUsers" data-ng-click="editChapter(chapter.id)">
+					        <td >{{$index+1}}</td>
+					           <td>{{chapter.id}}</td>		
+					        <td>{{chapter.name}}</td>
+					            <td>{{chapter.creativeId}}</td>
+					        <td>{{chapter.body}}</td>					   
+					         <td>{{chapter.created}}</td>	
+					         <td>{{chapter.number}}</td>
+					        	         
+					        
+	    				</tr>
+                    </tbody>
+                </table>
+                </div>          
+            </div>  
+<div class="global-modal">
+    <div class="overlay"></div>
+    <div class="global-modal-chapters_contents modal-transition">
+        <div class="global-modal-header">
+       	<i class="fa fa-2x fa-times" data-ng-click="close()"></i>
+            <h3><b> <i class="fa fa-2x fa-edit"></i> Edit Chapter </b></h3>
+        </div>
+        <div class="global-modal-body">
+            <div class="col-md-12">                	
+             <div class="note">
+		        <span class="date">{{selectedChapter.createdOn}}</span>
+		        <span class="icons">
+		            <i class="fa fa-2x fa-check fa-lg" ng-if="chapter.edit == false"></i>
+		            <i class="fa fa-2x fa-pencil fa-lg" ng-if="chapter.edit == true"></i>
+		            <i data-ng-click="saveChapter()" style="cursor: pointer;" class="fa fa-2x fa-floppy-o pull-right"></i>
+		        </span>
+		     <div class="form-group" >
+		        <input style="width: 33%; margin-left: 33%"  type="text" maxlength="50" data-ng-model="selectedChapter.name" class="form-control" placeholder="Chapter Name">
+		      </div>
+		      <div class="markdown-body" ng-model="selectedChapter.body" ng-change="update(selectedChapter.body)" ng-focus="selectedChapter.edit = true" ng-blur="selectedChapter.edit = false" markdown-editable contenteditable="true">
+
+		              {{ selectedChapter.text }}
+		          </div>
+		    </div>
+            </div>
+            <div class="col-md-12 text-center">
+	            <div data-ng-if="showLoading" class="loading"><br><br>
+					<i  class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
+	    		</div>
+	        	            <a class="btn-green-flat-trigger" data-ng-click="deleteChapter()">Delete chapter</a><br><br><br>          		
+	        </div>
+
+	        <div class="col-md-12" data-ng-if="message != ''">
+	            <div class="col-md-3">&nbsp;</div>
+	            <div class="col-md-6">
+	            	<div data-ng-class="(savedSuccessfully) ? 'text-center _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success' : 'text-center _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger'" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Result:</span>
+						{{message}}
+					</div>	  <br>
+					<br>
+					  
+
+	            </div>
+	        </div><br>
+        </div>          
+    </div>
+</div>
+     </div>
+        </div>
