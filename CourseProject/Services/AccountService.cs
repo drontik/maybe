@@ -85,7 +85,7 @@ namespace CourseProject.Services
 
         private ImageUploadResult CloudinaryUpload(MultipartFormDataStreamProvider provider)
         {
-            var account = new Account("ddttiy9ko", "799681156658259", "_A8bJk28HFotHtOJCMPFKrb1rII");
+            var account = new Account("drontik", "951457155685794", "xTcUpCQ45D8Yydijccmrtv8dfGM");
 
             var cloudinary = new Cloudinary(account);
 

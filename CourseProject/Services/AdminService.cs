@@ -88,15 +88,10 @@ namespace CourseProject.Services
         {
             var user = await db.Users.FindUserById(model.Id);
             db.Ratings.RemoveRange(db.Ratings.Find(x => x.User.Id == user.Id));
-            db.Save();
             db.Comments.RemoveRange(db.Comments.Find(x => x.User.Id == user.Id));
-            db.Save();
             db.Likes.RemoveRange(db.Likes.Find(x => x.User.Id == user.Id));
-            db.Save();
-            db.Creatives.RemoveRange(db.Creatives.Find(x => x.User.Id == user.Id));
-            db.Save();
             db.ChapterStore.RemoveRange(db.ChapterStore.Find(x=>x.ApplicationUserId == user.Id));
-
+            db.Creatives.RemoveRange(db.Creatives.Find(x => x.User.Id == user.Id));
             db.Save();
 
             return await db.Users.DeleteUser(user);

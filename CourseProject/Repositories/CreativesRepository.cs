@@ -64,9 +64,11 @@ namespace CourseProject.Repositories
 
         public void RemoveRange(IEnumerable<Creative> range)
         {
-            var creatives = db.Creatives.Include(x => x.Tags);
-
-            db.Creatives.RemoveRange(creatives);
+            foreach (var id in range)
+            {
+                    db.Tags.RemoveRange(id.Tags);
+            }
+            db.Creatives.RemoveRange(range);
         }
     }
 }

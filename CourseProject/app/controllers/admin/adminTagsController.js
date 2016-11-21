@@ -51,7 +51,7 @@ app.controller('adminTagsController',  ['$http','$scope', '$location', 'authServ
 	};
 
 	$scope.addTag = function(){
-		if($scope.newTag.length > 3){
+		if($scope.newTag.length > 0){
 			$scope.selectedTag.name = $scope.newTag;
 			$scope.selectedTag.id = 0;
 			$scope.message1 = '';
@@ -70,7 +70,7 @@ app.controller('adminTagsController',  ['$http','$scope', '$location', 'authServ
 		}	
 		else{
 			 $scope.savedSuccessfully = false;
-			 $scope.message1 = "Name must be more than 3 characters!"
+			 $scope.message1 = "Name must be more than 0 characters!"
 		}
 	};
 
