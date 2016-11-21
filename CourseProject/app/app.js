@@ -3,7 +3,7 @@ var app = angular.module('AngularAuthApp',
     ['ui.bootstrap','ng-showdown','ngSanitize','ui.sortable','ngRoute','angular-markdown-editable',
      'ngTagsInput', 'LocalStorageModule', 'angular-loading-bar', 'dndLists', 'ngFileUpload', 'ngResource','infinite-scroll']);
 
-var serviceBase = 'http://localhost:4356/';
+var serviceBase = 'https://localhost:44351/';
 //var serviceBase = 'http://sweexxik-001-site1.anytempurl.com/';
 
 app.config(function ($routeProvider) {
