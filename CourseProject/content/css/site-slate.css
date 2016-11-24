@@ -145,7 +145,7 @@ body {
 .btn.active span.glyphicon {        
   opacity: 1;       
 }
-._btn-lg
+/*._btn-lg
 {
     padding: 10px 16px;
     font-size: 18px;
@@ -157,7 +157,7 @@ body {
     font-size: 24px;
     line-height: 1.33;
 }
-/*._btn{transition:all 0.8s;-o-transition:all 0.8s;-moz-transition:all 0.8s;-webkit-transition:all 0.8s;border-radius:0px;margin-top:10px}*/
+/*._btn{transition:all 0.8s;-o-transition:all 0.8s;-moz-transition:all 0.8s;-webkit-transition:all 0.8s;border-radius:0px;margin-top:10px}
 ._btn-rounded{border-radius:50px}
 ._btn-round-tosquare:hover{border-radius:0px}
 ._btn-square-toround:hover{border-radius:50px}
@@ -170,7 +170,7 @@ body {
 ._btn-bordered-warning{color:#F0AD4E;background:#3e444c;border:2px solid #F0AD4E}
 ._btn-bordered-warning:hover{color:#FFFFFF;background:#F0AD4E;border:2px solid #FFFFFF}
 ._btn-bordered-danger{color:#D9534F;background:#3e444c;border:2px solid #D9534F}
-._btn-bordered-danger:hover{color:#3e444c;background:#D9534F;border:2px solid #FFFFFF}
+._btn-bordered-danger:hover{color:#3e444c;background:#D9534F;border:2px solid #FFFFFF}*/
 
 
 .portlet-bordered {
@@ -219,5 +219,3 @@ body {
       margin: 0;
       color: #444;
     }
-
-    

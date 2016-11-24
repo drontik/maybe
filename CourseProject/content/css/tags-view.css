@@ -5,43 +5,40 @@
   display: inline-block;
 }
 .widget--tags a.tag {
-  background-color: peru;
+  background-color: #31b0d5;
   color: white;
   text-decoration: none;
-  box-shadow: inset 0 0 5px peru;
+  box-shadow: inset 0 0 5px #31b0d5;
   margin: .25em;
   padding-left: .5em;
   border-radius: 5px;
   overlow: hidden;
+  transition: all 500ms ease-out;
 }
 .widget--tags a.tag::after, .widget--tags a.tag::before {
   display: block;
   float: right;
-  color: #9d6631;
+  color: #fff;
 }
 .widget--tags a.tag::before {
   content: attr(data-count);
-  background-color: #674320;
+  background-color: #337ab7;
   border-radius: 0 5px 5px 0;
   padding-right: .25em;
   padding-left: .25em;
-}
-.widget--tags a.tag::after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-top: 0.2em solid transparent;
-  border-bottom: 0.2em solid transparent;
-  border-right: 0.25em solid #674320;
-  margin-top: .45em;
-  margin-left: .3em;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  font-size: 17px;
+  margin: 6px;
+  text-align: center;
 }
 .widget--tags a.tag:hover {
-  background-color: #674320;
+  background-color: #337ab7;
 }
 
 .widget--tags a.tag:hover::before {
-  background-color: peru;
+  background-color: #31b0d5;
   color: white;
 }
 

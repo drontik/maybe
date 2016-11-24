@@ -1,6 +1,5 @@
 ﻿
 html,body{
-  background: url(../images/cream.jpg);
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -142,7 +141,7 @@ body {
 .btn.active span.glyphicon {        
   opacity: 1;       
 }
-._btn-lg
+/*._btn-lg
 {
     padding: 10px 16px;
     font-size: 18px;
@@ -167,7 +166,7 @@ body {
 ._btn-bordered-warning{color:#F0AD4E;background:#FFFFFF;border:2px solid #F0AD4E}
 ._btn-bordered-warning:hover{color:#FFFFFF;background:#F0AD4E;border:2px solid #FFFFFF}
 ._btn-bordered-danger{color:#D9534F;background:#FFFFFF;border:2px solid #D9534F}
-._btn-bordered-danger:hover{color:#FFFFFF;background:#D9534F;border:2px solid #FFFFFF}
+._btn-bordered-danger:hover{color:#FFFFFF;background:#D9534F;border:2px solid #FFFFFF}*/
 
 
 

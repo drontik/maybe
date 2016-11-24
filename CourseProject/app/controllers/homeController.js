@@ -121,7 +121,7 @@ app.controller('homeController',
    }
 
      var globalModal = $('.global-modal');
-    $( ".btn-green-flat-trigger" ).on( "click", function(e) {
+     $(".btn-trigger").on("click", function (e) {
       e.preventDefault();
       $( globalModal ).toggleClass('global-modal-show');
     });

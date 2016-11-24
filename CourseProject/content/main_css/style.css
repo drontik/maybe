@@ -105,3 +105,19 @@
 .blo-top form input[type="submit"]:hover{
 	background:#f53f1a;
 }
+
+
+.main-content {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.main-content > div:last-child {
+}
+
+.blog-post .alert-info {
+    padding: 5px 15px;
+}
+
+.full-width {
+    width: 100%;
+}
