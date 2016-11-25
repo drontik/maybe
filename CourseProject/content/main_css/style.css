@@ -121,3 +121,9 @@
 .full-width {
     width: 100%;
 }
+
+.dots {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

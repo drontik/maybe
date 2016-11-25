@@ -28,7 +28,7 @@
                                 <div>
                                     <div class="col-md-3"></div>
                                     <img data-ng-if="userInfo.avatarUri" style="width: 200px; height: 200px;" data-ng-src="{{userInfo.avatarUri}}" alt="Texto Alternativo" class="img-thumbnail">
-                                    <img data-ng-if="userInfo.avatarUri == undefined" style="width: 200px; height: 200px;" align="center" src="http://res.cloudinary.com/drontik/image/upload/v1479751791/courseProject/avatar_sdaz7g.jpg" alt="Texto Alternativo" class="img-thumbnail">
+                                    <img data-ng-if="userInfo.avatarUri == undefined" style="width: 200px; height: 200px;" align="center" src="http://res.cloudinary.com/drontik/image/upload/v1480060433/courseProject/nophoto.gif" alt="Texto Alternativo" class="img-thumbnail">
                                     <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
                                     <p>{{userInfo.userName}}</p>
 
@@ -135,17 +135,10 @@
         <div class="global-modal">
             <div class="overlay"></div>
             <div class="global-modal-profile_contents modal-transition">
-                <div class="global-modal-header">
+                <!--<div class="global-modal-header">
                     <span class="mobile-close"> X </span>
-                    <h3>
-                        <b>
-                            <i class="fa fa-2x fa-upload"></i>
-                            <div style="width: 40%; position: relative;" class="btn btn-success full-width" accept="image/*" ngf-pattern="'image/*'" ngf-select ng-model="$parent.file" ngf-multiple="false">
-                                {{translation.CHOSE}}
-                            </div>
-                        </b>
-                    </h3>
-                </div>
+                    
+                </div>-->
                 <div class="global-modal-body">
                     <div id="upload" class="row">
                         <div class="col-md-12">
@@ -153,13 +146,20 @@
                                 <div class="panel-heading text-center">
                                     <strong>{{translation.UPLOAD}} </strong> <small> </small>
                                 </div>
+                                <h3>
+                                    <b>
+                                        <div class="btn btn-success full-width" accept="image/*" ngf-pattern="'image/*'" ngf-select ng-model="$parent.file" ngf-multiple="false">
+                                            {{translation.CHOSE}}
+                                        </div>
+                                    </b>
+                                </h3>
                                 <div class="panel-body">
                                     <div data-ng-if="!file.name" ngf-drop ngf-select ng-model="$parent.file" class="drop-box upload-drop-zone" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'">
                                         {{translation.DRAG_MSG}}
                                     </div>
                                     <img class="img img-responsive" ngf-src="file" class="thumb">
                                     <div class="js-upload-finished text-center" data-ng-if="file.name">
-                                        <h3>{{translation.FILE}}: {{file.name}} {{file.$error}} {{file.$errorParam}} </h3>
+                                        <h3 class="dots">{{translation.FILE}}: {{file.name}} {{file.$error}} {{file.$errorParam}} </h3>
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : progressPercentage*10}">
                                                 <span class="sr-only">60% Complete</span>
