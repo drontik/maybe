@@ -65,7 +65,7 @@
                 <div class="col-md-12">
                     <div class="col-md-12">
                         <div class="col-md-12">
-                            <h4 class="form-login-heading">{{translation.TITLE}}</h4>
+                            <h4 class="form-login-heading">{{translation.TITLE}}
                             <input maxlength="80" style="text-align: center" type="text" class="form-control" data-ng-model="creativeName" placeholder="{{translation.CREATIVE_NAME}}" required autofocus>
                         </div>
                         <div class="col-md-12">
@@ -149,54 +149,48 @@
         </div>
     </div>
 
-    <div class="col-md-12 margin-bottom-30" data-ng-repeat="creative in creatives | filter:searchCreatives | orderBy:sortType:sortReverse ">
-        <div class="panel panel-default">
-            <div class="panel-heading clearfix">
-                <div class="caption">                 
-                    <span><i class="fa fa-comments" ></i>
-                        &nbsp;{{creative.comments.length}}&nbsp;
-                    </span>
-                    <span data-ng-if="creative.avgRating > 4">
-                       <i class="fa fa-star" ></i>
-                        &nbsp;{{creative.avgRating.toFixed(2)}}&nbsp; 
-                    </span> 
-                    <span data-ng-if="creative.avgRating >= 2 && creative.avgRating <= 4 ">
-                        <i class="fa fa-star-half" ></i>
-                        &nbsp;{{creative.avgRating.toFixed(2)}}&nbsp;
-                    </span>     
-                    <span data-ng-if="creative.avgRating < 2">
-                        <i class="fa fa-star"></i>
-                         &nbsp;{{creative.avgRating.toFixed(2)}}&nbsp; 
-                    </span>    
-                </div>
-                <div class="actions">
-                    <a data-ng-href="#/edit/{{creative.id}}" class="_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-info">
-                        <i class="glyphicon glyphicon-pencil"></i>&nbsp;{{translation.EDIT}}&nbsp;
-                    </a>
-                </div>
-            </div>
-            <div class="panel-body" style="word-wrap: break-word;">
-                <div class="col-md-12">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-11">
-                        <h2 class="blog-post-title">
-                            <a data-ng-href="#/show/{{creative.id}}">
-                                {{creative.name}}
-                            </a>
-                        </h2>
-                        <p>{{creative.description}}</p>
+    <div class="col-md-12 margin-bottom-30 jumbotron" data-ng-repeat="creative in creatives | filter:searchCreatives | orderBy:sortType:sortReverse ">
+        <div class="blog-post">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8" style='word-wrap: break-word;'>
+                            <h2 class="blog-post-title">
+                                <a data-ng-href="#/show/{{creative.id}}">{{creative.name}}</a>
+                            </h2>
+                            <p>{{creative.description}}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="pull-right">
+                                <div class="col-md-12 alert alert-info" style="margin-bottom: 10px;">
+                                    <span style="font-size: 28px" data-ng-if="creative.avgRating > 4">
+                                        <i class="fa fa-star "></i> {{creative.avgRating.toFixed(2)}}
+                                    </span>
+                                    <span style="font-size: 28px" data-ng-if="creative.avgRating >= 2 && creative.avgRating <= 4 ">
+                                        <i class="fa fa-star-half-o "></i>
+                                        {{creative.avgRating.toFixed(2)}}
+                                    </span>
+                                    <span style="font-size: 28px" data-ng-if="creative.avgRating < 2">
+                                        <i class="fa fa-star-o"></i>
+                                        {{creative.avgRating.toFixed(2)}}
+                                    </span>
+                                </div>
+                                <div class="col-md-12 alert alert-info">
+                                    <span class="_btn-warning" style="font-size: 28px"><i class="fa fa-comments  bordered-warning"></i> {{creative.comments.length}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="widget--tags text-center">
-                    <a href="" data-ng-repeat="tag in creative.tags | orderBy: 'count' : true" class="tag" data-count="{{tag.count}}"
-                       data-ng-click='search(tag.name)'>{{tag.name}}</a>
-                </div>
-                <div class="row">
-                    <div class="col-md-2"></div>
+                    <div class="widget--tags text-center">
+                        <a href="" data-ng-repeat="tag in creative.tags" class="tag" data-count="{{tag.count}}" data-ng-click='searchFromTag(tag.name)'>{{tag.name}}</a>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
                     <div class="col-md-8" style='word-wrap: break-word;'>
-                        <div class="panel panel-info  text-left">
-                            <div class="panel-heading"><h2 class="panel-title">{{translation.CHAPTERS}}</h2></div>
+                        <div class="panel panel-info ">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">{{translation.CHAPTERS}}</h2>
+                            </div>
                             <div class="panel-body">
                                 <ul class="list-group">
                                     <li class="list-group-item" data-ng-repeat="chapter in creative.chapters">{{$index + 1}}. {{chapter.name}}</li>
@@ -204,19 +198,14 @@
                             </div>
                         </div>
                     </div>
+                    <a data-ng-href="#/show/{{creative.id}}" style="margin-bottom: 20px;" class="btn btn-primary full-width _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning"><i class="fa fa-book"></i> {{translation.READ_MORE}}</a>
+                    <a data-ng-href="#/edit/{{creative.id}}" style="margin-bottom: 20px;" class="btn btn-primary full-width _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning btn-warning"><i class="glyphicon glyphicon-pencil"></i> {{translation.EDIT}}</a>
                 </div>
-
-                <br>
-                <a  data-ng-href="#/show/{{creative.id}}" class="text-center btn btn-primary full-width _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning">
-                    <i class="glyphicon glyphicon-align-justify"></i>
-                    &nbsp;{{translation.SHOW}}&nbsp;
-                </a> <br><br>
-               
-            </div>
-            <div class="panel-footer">
-                <span class="text-left">
-                    &nbsp;{{creative.created}}&nbsp;
-                </span>
+                <div class="panel-footer">
+                    <span class="text-left">
+                        &nbsp;{{creative.created}}&nbsp;
+                    </span>
+                </div>
             </div>
         </div>
     </div>

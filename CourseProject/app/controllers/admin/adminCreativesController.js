@@ -22,7 +22,7 @@ app.controller('adminCreativesController',  ['$http','$scope', '$location', 'aut
   ];
   
    if (!authService.authentication.isAuth){
-  		$location.path('/home');
+  		$location.path('/main');
   	}
   	else {
   		authService.getProfileInfo().then(function(results){
@@ -30,7 +30,7 @@ app.controller('adminCreativesController',  ['$http','$scope', '$location', 'aut
 	        $scope.isAdmin = $scope.userInfo.isAdmin;
 	        
 	        if(!$scope.isAdmin){
-	        	$location.path('/home');
+	        	$location.path('/main');
 	        }   
 	        else {
 	        	creativeService.getAllCreatives().then(function(results){

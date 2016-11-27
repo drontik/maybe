@@ -6,6 +6,89 @@
     </div>
 </div>
 <div class="main-content">
+
+    <div class="col-md-9">
+        <div class="container-fluid">
+            <div class="col-md-12" data-ng-if="message != ''">
+                <div class="col-md-3">&nbsp;</div>
+                <div class="col-md-6">
+                    <div data-ng-class="(savedSuccessfully) ? 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-info' : '_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger text-center'" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Result:</span>
+                        {{message}}
+                    </div> <br><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-md-12 margin-bottom-30 jumbotron" data-ng-repeat="creative in results">
+                <div class="blog-post">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-2">
+                                <a data-ng-href="#/show/{{creative.id}}">
+                                    <img style="width: 150px" data-ng-if="creative.avatarUri" align="center" data-ng-src="{{creative.avatarUri}}" alt="Texto Alternativo" class="img-responsive">
+                                    <img style="width: 150px" data-ng-if="creative.avatarUri == undefined" align="center" src="http://res.cloudinary.com/drontik/image/upload/v1480060433/courseProject/nophoto.gif" alt="Texto Alternativo" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-md-12">
+                                    <div class="col-md-9" style='word-wrap: break-word;'>
+                                        <h2 class="blog-post-title">
+                                            <a data-ng-href="#/show/{{creative.id}}">{{creative.name}}</a>
+                                        </h2>
+                                        <p>{{creative.description}}</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="pull-right">
+                                            <div class="col-md-12 alert alert-info" style="margin-bottom: 10px;">
+                                                <span style="font-size: 28px" data-ng-if="creative.avgRating > 4">
+                                                    <i class="fa fa-star "></i> {{creative.avgRating.toFixed(2)}}
+                                                </span>
+                                                <span style="font-size: 28px" data-ng-if="creative.avgRating >= 2 && creative.avgRating <= 4 ">
+                                                    <i class="fa fa-star-half-o "></i>
+                                                    {{creative.avgRating.toFixed(2)}}
+                                                </span>
+                                                <span style="font-size: 28px" data-ng-if="creative.avgRating < 2">
+                                                    <i class="fa fa-star-o"></i>
+                                                    {{creative.avgRating.toFixed(2)}}
+                                                </span>
+                                            </div>
+                                            <div class="col-md-12 alert alert-info">
+                                                <span class="_btn-warning" style="font-size: 28px"><i class="fa fa-comments  bordered-warning"></i> {{creative.comments.length}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget--tags text-center">
+                                    <a href="" data-ng-repeat="tag in creative.tags" class="tag" data-count="{{tag.count}}" data-ng-click='searchFromTag(tag.name)'>{{tag.name}}</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2">&nbsp;</div>
+                            <div class="col-md-8" style='word-wrap: break-word;'>
+                                <div class="panel panel-info ">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">{{translation.CHAPTERS}}</h2>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" data-ng-repeat="chapter in creative.chapters">{{$index + 1}}. {{chapter.name}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <a data-ng-href="#/show/{{creative.id}}" style="margin-bottom: 20px;" class="btn btn-primary full-width _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning"><i class="fa fa-book"></i> {{translation.READ_MORE}}</a>
+                        </div>
+                        <div class="panel-footer">
+                            {{translation.CREATED}}
+                            <a data-ng-href="#/user/{{creative.userName}}"> {{creative.userName}}</a>
+                            {{creative.created}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-md-3">
         <div class="input-group" id="adv-search">
             <form data-ng-submit="search()">
@@ -84,90 +167,6 @@
                             </div>
                         </li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div class="container-fluid">
-            <div class="col-md-12" data-ng-if="message != ''">
-                <div class="col-md-3">&nbsp;</div>
-                <div class="col-md-6">
-                    <div data-ng-class="(savedSuccessfully) ? 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-info' : '_btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger text-center'" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Result:</span>
-                        {{message}}
-                    </div> <br><br><br>
-                </div>
-            </div>
-        </div>
-        <div style="overflow: auto;" infinite-scroll='loadMore()'>
-            <div class="container-fluid">
-                <div class="col-md-12 margin-bottom-30 jumbotron" data-ng-repeat="creative in results">
-                    <div class="blog-post">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="col-md-2">
-                                    <a data-ng-href="#/show/{{creative.id}}">
-                                        <img style="width: 150px" data-ng-if="creative.avatarUri" align="center" data-ng-src="{{creative.avatarUri}}" alt="Texto Alternativo" class="img-responsive">
-                                        <img style="width: 150px" data-ng-if="creative.avatarUri == undefined" align="center" src="http://res.cloudinary.com/drontik/image/upload/v1480060433/courseProject/nophoto.gif" alt="Texto Alternativo" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="col-md-12">
-                                        <div class="col-md-9" style='word-wrap: break-word;'>
-                                            <h2 class="blog-post-title">
-                                                <a data-ng-href="#/show/{{creative.id}}">{{creative.name}}</a>
-                                            </h2>
-                                            <p>{{creative.description}}</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="pull-right">
-                                                <div class="col-md-12 alert alert-info" style="margin-bottom: 10px;">
-                                                    <span style="font-size: 28px" data-ng-if="creative.avgRating > 4">
-                                                        <i class="fa fa-star "></i> {{creative.avgRating.toFixed(2)}}
-                                                    </span>
-                                                    <span style="font-size: 28px" data-ng-if="creative.avgRating >= 2 && creative.avgRating <= 4 ">
-                                                        <i class="fa fa-star-half-o "></i>
-                                                        {{creative.avgRating.toFixed(2)}}
-                                                    </span>
-                                                    <span style="font-size: 28px" data-ng-if="creative.avgRating < 2">
-                                                        <i class="fa fa-star-o"></i>
-                                                        {{creative.avgRating.toFixed(2)}}
-                                                    </span>
-                                                </div>
-                                                <div class="col-md-12 alert alert-info">
-                                                    <span class="_btn-warning" style="font-size: 28px"><i class="fa fa-comments  bordered-warning"></i> {{creative.comments.length}}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="widget--tags text-center">
-                                        <a href="" data-ng-repeat="tag in creative.tags" class="tag" data-count="{{tag.count}}" data-ng-click='searchFromTag(tag.name)'>{{tag.name}}</a>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">&nbsp;</div>
-                                <div class="col-md-8" style='word-wrap: break-word;'>
-                                    <div class="panel panel-info ">
-                                        <div class="panel-heading">
-                                            <h2 class="panel-title">{{translation.CHAPTERS}}</h2>
-                                        </div>
-                                        <div class="panel-body">
-                                            <ul class="list-group">
-                                                <li class="list-group-item" data-ng-repeat="chapter in creative.chapters">{{$index + 1}}. {{chapter.name}}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a data-ng-href="#/show/{{creative.id}}" style="margin-bottom: 20px;" class="btn btn-primary full-width _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning"><i class="fa fa-book"></i> {{translation.READ_MORE}}</a>
-                            </div>
-                            <div class="panel-footer">
-                                {{translation.CREATED}}
-                                <a data-ng-href="#/user/{{creative.userName}}"> {{creative.userName}}</a>
-                                {{creative.created}}
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

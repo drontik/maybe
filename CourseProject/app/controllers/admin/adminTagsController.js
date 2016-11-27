@@ -16,7 +16,7 @@ app.controller('adminTagsController',  ['$http','$scope', '$location', 'authServ
   $scope.message1 = '';	
 
    	if (!authService.authentication.isAuth){
-  		$location.path('/home');
+  		$location.path('/main');
   	}
   	else {
   		authService.getProfileInfo().then(function(results){
@@ -24,7 +24,7 @@ app.controller('adminTagsController',  ['$http','$scope', '$location', 'authServ
 	        $scope.isAdmin = $scope.userInfo.isAdmin;
 	        
 	        if(!$scope.isAdmin){
-	        	$location.path('/home');
+	        	$location.path('/main');
 	        }   
 	        else{
 	        	adminService.getAllTags().then(function(results){

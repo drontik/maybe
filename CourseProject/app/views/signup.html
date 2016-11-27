@@ -1,12 +1,26 @@
-﻿<form class="form-login" role="form">
-    <h2 class="form-login-heading text-center">{{translation.SIGNUP}}</h2>
-    <hr>
-    <input type="text" class="form-control" placeholder="{{translation.USERNAME}}" data-ng-model="registration.userName" required autofocus>
-    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="registration.password" required>
-    <input type="password" class="form-control" placeholder="{{translation.PASS_CONFIRM}}" data-ng-model="registration.confirmPassword" required>
-    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">{{translation.SUBMIT}}</button>
-    <div class="col-md-12"><br></div>
-    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success' : 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger'">
-        {{message}}
+﻿<div data-ng-hide="authentication.isAuth" class="jumbotron">
+    <div class="container">
+        <form role="form">
+            <div class="row">
+                <div class="col-md-4">
+                    &nbsp;
+                </div>
+                <div class="col-md-4 text-center">
+                    <h2 class="form-login-heading text-center">{{translation.SIGNUP}}</h2><br>
+                    <hr>
+                    <input type="text" class="form-control" placeholder="{{translation.USERNAME}}" data-ng-model="registration.userName" required autofocus>
+                    <br>
+                    <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="registration.password" required>
+                    <br>
+                    <input type="password" class="form-control" placeholder="{{translation.PASS_CONFIRM}}" data-ng-model="registration.confirmPassword" required>
+                    <br>
+                    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">{{translation.SUBMIT}}</button>
+                    <div class="col-md-12"><br></div>
+                    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-success' : 'text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-danger'">
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

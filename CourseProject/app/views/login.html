@@ -1,9 +1,5 @@
 ﻿<div data-ng-hide="authentication.isAuth" class="jumbotron">
     <div class="container">
-        <div class="page-header text-center">
-            <h1>{{translation.SIGNUP_MAIN_TEXT}}</h1>
-        </div>
-        <p align="center">{{translation.SECONDARY_TEXT}}</p>
         <form role="form">
             <div class="row">
                 <div class="col-md-4">
@@ -11,6 +7,7 @@
                 </div>
                 <div class="col-md-4 text-center">
                     <h2 class="form-login-heading">{{translation.LOGIN}}</h2> <br>
+                    <hr>
                     <input type="text" class="form-control" placeholder="{{translation.USERNAME}}" data-ng-model="loginData.userName" required autofocus>
                     <br>
                     <input type="password" class="form-control" placeholder="{{translation.PASSWORD}}" data-ng-model="loginData.password" required>

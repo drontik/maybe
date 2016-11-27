@@ -13,7 +13,7 @@ app.controller('adminChaptersController',  ['$http','$scope', '$location', 'auth
  	$scope.message = '';	
 
    	if (!authService.authentication.isAuth){
-  		$location.path('/home');
+  		$location.path('/main');
   	}
   	else {
   		authService.getProfileInfo().then(function(results){
@@ -21,7 +21,7 @@ app.controller('adminChaptersController',  ['$http','$scope', '$location', 'auth
 	        $scope.isAdmin = $scope.userInfo.isAdmin;
 	        
 	        if(!$scope.isAdmin){
-	        	$location.path('/home');
+	        	$location.path('/mian');
 	        }   
 	        else{
 	        	adminService.getAllChapters().then(function(results){

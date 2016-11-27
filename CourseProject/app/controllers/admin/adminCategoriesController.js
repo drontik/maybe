@@ -17,7 +17,7 @@ app.controller('adminCategoriesController',  ['$http','$scope', '$location', 'au
  $scope.message1 = '';	
 
    	if (!authService.authentication.isAuth){
-  		$location.path('/home');
+  		$location.path('/main');
   	}
   	else {
   		authService.getProfileInfo().then(function(results){
@@ -25,7 +25,7 @@ app.controller('adminCategoriesController',  ['$http','$scope', '$location', 'au
 	        $scope.isAdmin = $scope.userInfo.isAdmin;
 	        
 	        if(!$scope.isAdmin){
-	        	$location.path('/home');
+	        	$location.path('/main');
 	        }   
 	        else{
 	        	creativeService.getCategories().then(function(results){

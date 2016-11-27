@@ -294,7 +294,9 @@ app.controller('showCreativeController', ['$showdown','$sce','$window','$route',
    };
 
 
-   $scope.targetClass = 'readerStyle3';
+    $scope.targetClass = 'readerStyle3';
+    
+    $scope.targetFontClass = 'readerFont1';
   
   $scope.colorInspirationClasses = [
     'readerStyle1', 'readerStyle2', 'readerStyle3', 'readerFont1', 'readerFont2','readerFont3'
@@ -305,6 +307,9 @@ app.controller('showCreativeController', ['$showdown','$sce','$window','$route',
     $scope.targetClass = $scope.colorInspirationClasses[a];
   }; 
 
-  
+  $scope.changeFont = function (a) {
+      console.log(a);
+      $scope.targetFontClass = $scope.colorInspirationClasses[a];
+  }
 
 }]);

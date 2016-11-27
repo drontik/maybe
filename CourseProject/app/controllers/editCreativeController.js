@@ -33,7 +33,7 @@ app.controller('editCreativeController',
 	                if (currentUserInfo.isAdmin == false) {
 	                    console.log("inIF")
 	                    if ($scope.creative.userName.toLowerCase() !== currentUserName.toLowerCase()) {
-	                        $location.path('/home');
+	                        $location.path('/main');
 	                    }
 	                }
 	            }, function(response) {
@@ -151,7 +151,7 @@ app.controller('editCreativeController',
    var startTimer = function () {
         var timer = $timeout(function () {
             $timeout.cancel(timer);
-            $location.path('/home');
+            $location.path('/main');
         }, 500);
     };
 

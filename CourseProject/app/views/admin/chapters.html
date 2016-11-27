@@ -90,10 +90,10 @@
 <div class="global-modal">
     <div class="overlay"></div>
     <div class="global-modal-chapters_contents modal-transition">
-        <div class="global-modal-header">
+        <!--<div class="global-modal-header">
        	<i class="fa fa-2x fa-times" data-ng-click="close()"></i>
             <h3><b> <i class="fa fa-2x fa-edit"></i> Edit Chapter </b></h3>
-        </div>
+        </div>-->
         <div class="global-modal-body">
             <div class="col-md-12">                	
              <div class="note">
@@ -116,9 +116,13 @@
 	            <div data-ng-if="showLoading" class="loading"><br><br>
 					<i  class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
 	    		</div>
-	        	            <a class="btn btn-success btn-trigger" data-ng-click="deleteChapter()">Delete chapter</a><br><br><br>          		
+	        	                 		
 	        </div>
-
+            <div class="col-md-12">
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-danger full-width btn-trigger" data-ng-click="deleteChapter()">Delete chapter</a>
+                </div>
+            </div><br>
 	        <div class="col-md-12" data-ng-if="message != ''">
 	            <div class="col-md-3">&nbsp;</div>
 	            <div class="col-md-6">

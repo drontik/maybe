@@ -28,7 +28,7 @@ app.controller('adminController', ['$http','$scope', '$location', 'authService',
   	    newPassword:""
     };
     if (!authService.authentication.isAuth){
-  	    $location.path('/home');
+  	    $location.path('/main');
     }
   	else {
   		authService.getProfileInfo().then(function(results){
@@ -36,7 +36,7 @@ app.controller('adminController', ['$http','$scope', '$location', 'authService',
 	        $scope.isAdmin = $scope.userInfo.isAdmin;
 	        
 	        if(!$scope.isAdmin){
-	        	$location.path('/home');
+	        	$location.path('/main');
 	        }   
 	        else{
 	        	adminService.getAllUsers().then(function(results){

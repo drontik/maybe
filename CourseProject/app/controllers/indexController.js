@@ -31,7 +31,7 @@ app.controller('indexController', ['$http', '$scope', '$location', 'authService'
 
         $scope.logOut = function() {
             authService.logOut();
-            $location.path("/home");
+            $location.path("/main");
         };
 
         $scope.changeTheme = function() {

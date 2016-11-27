@@ -95,31 +95,25 @@
 <div class="global-modal">
     <div class="overlay"></div>
     <div class="global-modal-creative_contents modal-transition">
-        <div class="global-modal-header">
+        <!--<div class="global-modal-header">
             	<i class="fa fa-2x fa-times" data-ng-click="close()"></i>
             <h3><b> <i class="fa fa-2x fa-edit"></i> Edit Creative </b></h3>
-        </div>
+        </div>-->
         <div class="global-modal-body">
-            <div class="col-md-12">                	
-                <div class="col-md-6">
-                		<h3 class="form-login-heading">Name</h3>
+            <div class="col-md-12">      
+                		<h4 class="form-login-heading">Name</h4>
 	                    <input maxlength="20" type="text" class="form-control" data-ng-model="selectedCreative.name" placeholder="Username" required autofocus>
 
-	                    <h3 class="form-login-heading">Description</h3>
+	                    <h4 class="form-login-heading">Description</h4>
 
 	                    <textarea type="text" cols="80" rows="5" class="form-control" maxlength="140" data-ng-model="selectedCreative.description" placeholder="Creative Description" required autofocus>{{selectedCreative.description}} </textarea> 
 	               
-	                    <h2 class="form-login-heading">Category</h2>  
+	                    <h4 class="form-login-heading">Category</h4>  
 
 		                <select class="form-control" data-ng-model="selectedOption"
 		                	data-ng-options="act.name for act in categories">
-                    	</select>                   	
-
-					               
-                    	 
-                </div>
-                <div class="col-md-6">
-                	  <h2 class="form-login-heading">Chapters</h2>  
+                    	</select>     
+                	  <h4 class="form-login-heading">Chapters</h4>  
                 	 <div class="input-group">
 						 <input type="text" class="form-control" data-ng-model="newChapter" placeholder="Chapter title" aria-describedby="basic-addon2">
 						  <span data-ng-click="addChapter()" class="input-group-addon btn btn-success">Add</span>
@@ -131,16 +125,23 @@
 		                        <button data-ng-click="deleteChapter(chapter.id)" class="btn btn-danger">Delete</button>
 		                    </div>
 					</div>
-                </div>
             </div>
             <div class="col-md-12 text-center">
 	            <div data-ng-if="showLoading" class="loading"><br><br>
 					<i  class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
-	    		</div>
-	            <a class="btn btn-success btn-trigger" data-ng-click="saveCreative()">Save changes</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            <a class="btn btn-success btn-trigger" data-ng-click="deleteCreative()">Delete creative</a><br><br><br>          		
+	    		</div>        		
 	        </div>
-	      
+            <div class="col-md-12">
+                <hr>
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-success full-width btn-trigger" data-ng-click="saveCreative()">Save changes</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-danger full-width btn-trigger" data-ng-click="deleteCreative()">Delete creative</a>
+                </div>
+            </div><br>
 	        <div class="col-md-12" data-ng-if="message != ''">
 	            <div class="col-md-3">&nbsp;</div>
 	            <div class="col-md-6">

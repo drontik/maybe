@@ -80,26 +80,33 @@
 <div class="global-modal">
     <div class="overlay"></div>
     <div class="global-modal-tags_contents modal-transition">
-        <div class="global-modal-header">          
+        <!--<div class="global-modal-header">          
             	<i class="fa fa-2x fa-times" data-ng-click="close()"></i>
             <h3><b> <i class="fa fa-2x fa-edit"></i> Edit Rating </b></h3>
-        </div>
+        </div>-->
         <div class="global-modal-body">
-            <div class="col-md-12">                	
-             <div class="col-md-3">&nbsp;</div>
-             <div class="col-md-6">
-                		<h3 class="form-login-heading text-center">Value</h3>
+            <div class="col-md-12">              
+             <div class="col-md-12">
+                		<h4 class="form-login-heading text-center">Value</h4>
 	                    <input maxlength="20" type="text" class="form-control" data-ng-model="selectedRating.value" placeholder="Rating value" required autofocus>
             </div>
 
             <div class="col-md-12 text-center">
 	            <div data-ng-if="showLoading" class="loading"><br><br>
 					<i  class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
-	    		</div>
-	            <a class="btn btn-success btn-trigger" data-ng-click="saveRating()">Save value</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            <a class="btn btn-success btn-trigger" data-ng-click="deleteRating(selectedTag.id)">Delete rating</a><br><br><br>          		
+	    		</div>         		
 	        </div></div>	        
-
+            <div class="col-md-12">
+                <hr>
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-success full-width btn-trigger" data-ng-click="saveRating()">Save value</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-danger full-width btn-trigger" data-ng-click="deleteRating(selectedTag.id)">Delete rating</a>
+                </div>
+            </div><br>
 	        <div class="col-md-12" data-ng-if="message != ''">
 	            <div class="col-md-3">&nbsp;</div>
 	            <div class="col-md-6">

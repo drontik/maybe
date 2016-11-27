@@ -20,7 +20,7 @@ namespace CourseProject.Repositories
 
         public IEnumerable<Medal> GetAll()
         {
-            return db.Medals.ToList();
+            return db.Medals.ToList().OrderBy(x=>x.Id);
         }
 
         public async Task<Medal> Get(int id)

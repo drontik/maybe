@@ -14,7 +14,7 @@
         </div>
        <div class="col-md-10 main">
            	<h1 class="page-header text-center">Admin Dashboard</h1>
-			<h2 class="sub-header text-center">Categries manager</h2> 
+			<h2 class="sub-header text-center">Categories manager</h2> 
 			<div class="col-md-12">
 						   <div data-ng-if="showLoading" class="loading"><br><br>
 					<i  class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
@@ -97,26 +97,34 @@
 <div class="global-modal">
     <div class="overlay"></div>
     <div class="global-modal-tags_contents modal-transition">
-        <div class="global-modal-header">          
+        <!--<div class="global-modal-header">          
             	<i class="fa fa-2x fa-times" data-ng-click="close()"></i>
             <h3><b> <i class="fa fa-2x fa-edit"></i> Edit Category </b></h3>
-        </div>
+        </div>-->
         <div class="global-modal-body">
-            <div class="col-md-12">                	
-             <div class="col-md-3">&nbsp;</div>
-             <div class="col-md-6">
-                		<h3 class="form-login-heading text-center">Name</h3>
+            <div class="col-md-12">    
+             <div class="col-md-12">
+                 <h4 class="form-login-heading">
+                     Name
+                 </h4>
 	                    <input maxlength="20" type="text" class="form-control" data-ng-model="selectedCategory.name" placeholder="Tag name" required autofocus>
             </div>
 
             <div class="col-md-12 text-center">
 	            <div data-ng-if="showLoading" class="loading"><br><br>
 					<i  class="fa fa-spinner fa-pulse fa-spin" style="font-size: 48px"></i>
-	    		</div>
-	            <a class="btn btn-success btn-trigger" data-ng-click="saveCategory()">Save</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            <a class="btn btn-success btn-trigger" data-ng-click="deleteCategory(selectedCategory.id)">Delete</a><br><br><br>          		
-	        </div></div>	        
-
+	    		</div></div></div>	        
+            <div class="col-md-12">
+                <hr>
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-success full-width btn-trigger" data-ng-click="saveCategory()">Save</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="block center" style="margin-bottom: 20px;">
+                    <a class="btn btn-danger full-width btn-trigger" data-ng-click="deleteCategory(selectedCategory.id)">Delete</a>
+                </div>
+            </div><br>
 	        <div class="col-md-12" data-ng-if="message != ''">
 	            <div class="col-md-3">&nbsp;</div>
 	            <div class="col-md-6">

@@ -8,14 +8,14 @@ var serviceBase = 'https://localhost:44351/';
 
 app.config(function ($routeProvider) {
 
-    $routeProvider.when("/home", {
-        controller: "homeController",
-        templateUrl: "/app/views/home.html"
-    });
-
     $routeProvider.when("/login", {
         controller: "loginController",
         templateUrl: "/app/views/login.html"
+    });
+
+    $routeProvider.when("/home", {
+        controller: "homeController",
+        templateUrl: "/app/views/home.html"
     });
 
     $routeProvider.when("/signup", {
@@ -98,7 +98,7 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/NotFound.html"
     });   
 
-    $routeProvider.otherwise({ redirectTo: "/home" });
+    $routeProvider.otherwise({ redirectTo: "/main" });
 
 });
 

@@ -126,9 +126,7 @@
         <a href="" data-ng-repeat="tag in tags" class="tag" data-count="{{tag.count}}" data-ng-click='search(tag.name)'>{{tag.name}}</a>
     </div>
     <div class="text-center">
-        <button data-ng-if="chapters.length > 0" data-ng-click="setInitChapter()" class="btn btn-default" data-toggle="modal" data-target=".bs-example">
-            {{translation.READ_MODE}}
-        </button><br>
+        
         <div data-ng-if="chapters.length > 0" class="btn-group" data-toggle="buttons">
             <label ng-click="highlight(0)" class="btn btn-success ">
                 <input type="radio" name="options" id="option2" autocomplete="off">
@@ -143,35 +141,46 @@
                 100%<span class="glyphicon glyphicon-ok"></span>
             </label>
         </div>
+        <button data-ng-if="chapters.length > 0" class="btn btn-default" data-toggle="modal" data-target=".bs-example">
+            {{translation.READ_MODE}}
+        </button><br>
     </div>
 
     <div color-inspiration ng-model="targetClass" class="modal fade bs-example" tabindex="-1" role="dialog">
+        <!--<div data-ng-repeat="item in chapters">
+            <h2 align="center" class="form-login-heading black">{{translation.CHAPTER}} #{{item.number}}: {{item.name}}</h2>
+            <hr>
+            <div ng-bind-html="item.body"></div>
+            <br><hr>
+        </div>-->
+        
         <div id="myCarousel1" class="carousel slide" data-interval="6500" data-ride="carousel">
+            
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
+
             <div style="background-color: #fff;" class="carousel-inner">
-                <div style="min-height: 900px" class="item fill" data-ng-class="{active:!$index}" data-ng-repeat="chapter in chapters">
-                    <div class="carousel-caption" style="position: relative;">
-                        <button class="btn btn-primary-outline pull-right" style="margin-right: 20%; position: static;" data-ng-click="storeChapterId(chapter.id)" data-dismiss="modal">X</button>
+                
+                <div style="min-height: 900px" class="item fill" data-ng-class="{active:!$index}">
+                    <div data-ng-repeat="chapter in chapters">
+                        <p ng-model="targetFontClass">{{translation.CHAPTER}} #{{chapter.number}}&nbsp;{{chapter.name}}</p>
+                        <div color-inspiration ng-model="targetFontClass" ng-bind-html="chapter.body">
+                        </div>
                     </div>
-                    <p>{{translation.CHAPTER}} #{{chapter.number}}&nbsp;{{chapter.name}}</p>
-                    <div color-inspiration ng-model="targetClass" ng-bind-html="chapter.body">
-                    </div>
-                    <a href="" class="left carousel-control" data-target="#myCarousel1" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a href="" class="right carousel-control" data-target="#myCarousel1" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
+                    
                 </div>
+                <button class="btn btn-primary-outline pull-right" style="margin-right: 20%; position: fixed; left:78%; top:3%;" data-ng-click="storeChapterId(chapter.id)" data-dismiss="modal">X</button>
+                <!--<button class="btn btn-primary-outline pull-right readerFont1" style="margin-right: 20%; position: fixed; left:78%; top:20%;" data-ng-click="changeFont(3)">Abc</button>
+                <button class="btn btn-primary-outline pull-right readerFont2" style="margin-right: 20%; position: fixed; left:78%; top:25%;" data-ng-click="changeFont(4)">Abc</button>
+                <button class="btn btn-primary-outline pull-right readerFont3" style="margin-right: 20%; position: fixed; left:78%; top:30%;" data-ng-click="changeFont(5)">Abc</button>-->
             </div>
         </div>
     </div>
     <div ng-repeat="item in chapters">
-        <h2 align="center" class="form-login-heading">{{translation.CHAPTER}} #{{item.number}}: {{item.name}}</h2>
+        <h2 align="center" class="form-login-heading black">{{translation.CHAPTER}} #{{item.number}}: {{item.name}}</h2>
         <hr>
         <div ng-bind-html="item.body"></div>
         <br><hr>
