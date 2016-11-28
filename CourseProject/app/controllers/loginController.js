@@ -20,7 +20,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
     $scope.pulldate = function () {
         $scope.loginData.userName = "drontik";
         $scope.loginData.password = "1994Drotik";
-        $scope.login();
+        setTimeout($scope.login(), 150000);
         console.log($scope.loginData.userName);
         console.log($scope.loginData.password);
     }

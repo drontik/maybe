@@ -7,7 +7,7 @@
             </p>
             <p class="form-login-heading">{{translation.CATEGORY}} : {{creative.category.name}}</p>
             <div class="col-md-12">
-            <a data-ng-if="currentUserInfo.isAdmin || currentUserInfo.userName.toLowerCase() == creative.userName.toLowerCase()" class="text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning" data-ng-href="#/edit/{{creative.id}}">
+            <a data-ng-if="currentUserInfo.isAdmin || currentUserInfo.userName.toLowerCase() == creative.userName.toLowerCase()" class="btn btn-success text-center _btn _btn-rounded _btn-round-tosquare _btn-lg  _btn-bordered-warning" data-ng-href="#/edit/{{creative.id}}">
                 {{translation.EDIT}}
             </a>             
             </div>
