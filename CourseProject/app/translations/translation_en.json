@@ -62,7 +62,7 @@
   "COMMENTS": "Comments",
   "COMM_AUTH": "Comment Authors",
   "CREATIVE_AUTH": "Creative Authors",
-  "EDIT_CREATIVE": "Edit your creative. It's always easy.",
+  "EDIT_CREATIVE": "Edit your creative.",
   "Result": "Result: ",
   "ADD_TAGS": "Add tags",
   "EDIT_CHAPTER": "Edit chapter",
@@ -89,5 +89,6 @@
   "RETURN": "Return",
   "CANCEL": "Cancel",
   "ERR_SIGNUP": "Error. UserName cannot contains ' . ' symbol.",
-  "CHAPTERS":  "Chapters list"
+  "CHAPTERS": "Chapters list",
+  "SOCIAL": "Use another service to log in."
 }

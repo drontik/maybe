@@ -17,5 +17,11 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
              $scope.message = err.error_description;
          });
     };
-  
+    $scope.pulldate = function () {
+        $scope.loginData.userName = "drontik";
+        $scope.loginData.password = "1994Drotik";
+        $scope.login();
+        console.log($scope.loginData.userName);
+        console.log($scope.loginData.password);
+    }
 }]);

@@ -1,11 +1,8 @@
 ﻿<div data-ng-hide="authentication.isAuth" class="jumbotron">
     <div class="container">
         <form role="form">
-            <div class="row">
-                <div class="col-md-4">
-                    &nbsp;
-                </div>
-                <div class="col-md-4 text-center">
+                
+                <div class="col-md-6 text-center">
                     <h2 class="form-login-heading">{{translation.LOGIN}}</h2> <br>
                     <hr>
                     <input type="text" class="form-control" placeholder="{{translation.USERNAME}}" data-ng-model="loginData.userName" required autofocus>
@@ -18,7 +15,29 @@
                         {{message}}
                     </div>
                 </div>
-            </div>
+                <div class="col-md-6 text-center">
+                    <h2>{{translation.SOCIAL}}</h2><br>
+<hr>
+                    <div id="socialLoginList">
+                        <div class="btn-group-vertical" aria-label="Login Providers">
+                            <button data-ng-click="login() name="provider" title="Log in using your Vkontakte account." class="btn btn-lg btn-vkontakte" id="Vkontakte" aria-label="Vkontakte" value="Vkontakte">
+                                <i class="fa fa-vkontakte"></i>
+                                Vkontakte
+                            </button>
+                            <button data-ng-click="pulldate()" name="provider" title="Log in using your Facebook account." class="btn btn-lg btn-facebook" id="Facebook" aria-label="Facebook" type="submit" value="Facebook">
+                                <i class="fa fa-facebook"></i>
+                                Facebook
+                            </button>
+                            <button data-ng-click="pulldate" name="provider" title="Log in using your Twitter account." class="btn btn-lg btn-twitter" id="Twitter" aria-label="Twitter" type="submit" value="Twitter">
+                                <i class="fa fa-twitter"></i>
+                                Twitter
+                            </button>
+                            <button>
+                                ololo
+                            </button>
+                        </div>
+                    </div>
+                </div>
         </form>
     </div>
 </div>
